@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_main_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
     android:layout_marginStart="12dp"
-    android:layout_marginEnd="12dp"
     android:layout_marginTop="6dp"
-    android:layout_marginBottom="6dp">
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="6dp"
+    android:checkable="true"
+    android:clickable="true"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@android:color/darker_gray"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:checkedIcon="@drawable/ic_card_view_checked_icon_24"
+    app:checkedIconTint="@android:color/holo_blue_bright"
+    app:contentPadding="16dp"
+    app:rippleColor="@color/colorPrimary"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="1dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="Hi Everybody! My name is Pejman and come from Iran.I'm a software engineer and have 41 years old. Although to have license certificate but my revenue is not suitable for our life."/>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Biography"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:text="Hi Everybody! My name is Pejman and come from Iran.I'm a software engineer and have 41 years old. Although to have license certificate but my revenue is not suitable for our life."/>
+    </LinearLayout>
 
-</FrameLayout>
+</com.google.android.material.card.MaterialCardView>

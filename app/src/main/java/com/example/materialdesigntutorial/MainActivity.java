@@ -2,6 +2,7 @@ package com.example.materialdesigntutorial;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
@@ -12,6 +13,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_main));
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.frame_main_fragmentContainer, new MainFragment());
+        fragmentTransaction.commit();
+
+
+        //setSupportActionBar((Toolbar) findViewById(R.id.toolbar_main));
+
     }
 }
