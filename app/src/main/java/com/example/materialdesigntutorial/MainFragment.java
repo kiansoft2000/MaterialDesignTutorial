@@ -8,13 +8,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainFragment extends Fragment {
     @Nullable
@@ -27,16 +32,31 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toolbar toolbar=view.findViewById(R.id.toolbar_main);
-        AppCompatActivity appCompatActivity= (AppCompatActivity) getActivity();
+        Toolbar toolbar = view.findViewById(R.id.toolbar_main);
+        AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(toolbar);
 
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24);
 
-        FloatingActionButton floatingActionButton=view.findViewById(R.id.fab_main);
+        DrawerLayout drawerLayout = view.findViewById(R.id.drawerLayout_main);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar,
+                R.string.draweropen, R.string.drawerclose);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+
+
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.fab_main);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(),"Fab button is clicked!",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(v.getContext(),"Fab button is clicked!",Toast.LENGTH_SHORT).show();
+                Snackbar.make(getView(), "Material Design Snackbar", BaseTransientBottomBar.LENGTH_INDEFINITE)
+                        .setAction("Retry", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // TODO: 10/04/2020 setOnClickListener for Retry Button on MainFragment Snackbar
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -48,11 +68,14 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 materialCardView.setChecked(!materialCardView.isChecked());
-                FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_main_fragmentContainer,new DetailFragment());
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_main_fragmentContainer, new DetailFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
+
+        /*NavigationView navigationView=view.findViewById(R.id.navigationView_main);
+        navigationView.setCheckedItem(R.id.menuItem_home);*/
     }
 }
