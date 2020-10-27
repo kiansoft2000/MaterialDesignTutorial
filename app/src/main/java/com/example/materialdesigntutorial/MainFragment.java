@@ -2,8 +2,10 @@ package com.example.materialdesigntutorial;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,6 +44,31 @@ public class MainFragment extends Fragment {
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar,
                 R.string.draweropen, R.string.drawerclose);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
+
+        NavigationView navigationView = view.findViewById(R.id.navigationView_main);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menuItem_home:
+                        //TODO
+                        break;
+                    case R.id.menuItem_recents:
+                        //TODO
+                        break;
+                    case R.id.menuItem_nearby:
+                        //TODO
+                        break;
+                }
+                return false;
+            }
+        });
+
+        View headerView =navigationView.getHeaderView(0);
+        TextView textView=headerView.findViewById(R.id.textView_header);
+        textView.setText(R.string.app_name);
+
+        //navigationView.addHeaderView();
 
 
         FloatingActionButton floatingActionButton = view.findViewById(R.id.fab_main);
